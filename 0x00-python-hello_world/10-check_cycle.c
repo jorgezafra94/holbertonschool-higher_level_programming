@@ -16,7 +16,7 @@ int check_cycle(listint_t *list)
 	b = list->next->next;
 	if (!b)
 		return (0);
-	for (; b && a; a = a->next, b = b->next->next)
+	for (; b && b->next && a; a = a->next, b = b->next->next)
 	{
 		if (a == b)
 			return (1);
