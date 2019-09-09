@@ -6,20 +6,19 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *a;
+	listint_t *a, *b;
 
 	if (!list)
 		return (0);
 	a = list->next;
-	if (!a)
-		return (0);
-	list = list->next->next;
-	if (!list)
-		return (0);
-	for (; a && list; a = a->next, list = list->next->next)
+	b = list->next->next;
+	if (a && b)
 	{
-		if (a == list)
-			return (1);
+		for (; a && b; a = a->next, b = b->next->next)
+		{
+			if (a == b)
+				return (1);
+		}
 	}
 	return (0);
 }
