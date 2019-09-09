@@ -10,15 +10,14 @@ int check_cycle(listint_t *list)
 
 	if (!list)
 		return (0);
-	a = list->next;
-	b = list->next->next;
-	if (a && b)
+	if ((a = list->next) == NULL)
+		return (0);
+	if ((b = list->next->next) == NULL)
+		return (0);
+	for (; a && b; a = a->next, b = b->next->next)
 	{
-		for (; a && b; a = a->next, b = b->next->next)
-		{
-			if (a == b)
-				return (1);
-		}
+		if (a == b)
+			return (1);
 	}
 	return (0);
 }
