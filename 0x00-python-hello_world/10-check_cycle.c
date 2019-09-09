@@ -12,7 +12,7 @@ int check_cycle(listint_t *list)
 		return (0);
 	a = list->next;
 	b = list->next->next;
-	while(b->next->next && a->next)
+	while(b && a)
 	{
 		if (a == b)
 			return (1);
