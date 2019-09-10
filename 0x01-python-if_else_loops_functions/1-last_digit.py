@@ -13,4 +13,4 @@ if last > 5:
 elif last < 6 and last != 0:
     print("{:d} and is less than 6 and not 0".format(last))
 else:
-    print("{:d} and is zero".format(last))
+    print("{:d} and is 0".format(last))
