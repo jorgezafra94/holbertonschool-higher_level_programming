@@ -1,4 +1,4 @@
-**LISTS AND STRUCTURES**
+**LISTS AND TUPLES**
 
 in this project we are going to solve these exercises
 
