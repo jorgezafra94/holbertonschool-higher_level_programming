@@ -2,7 +2,7 @@
 def multiple_returns(sentence):
     first = ''
     length = 0
-    if sentence is None:
+    if sentence is "":
         return (0, None)
     else:
         length = len(sentence)
