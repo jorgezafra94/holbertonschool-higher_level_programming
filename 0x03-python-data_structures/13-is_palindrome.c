@@ -6,33 +6,19 @@
  */
 int is_palindrome(listint_t **head)
 {
-	int count = 0, pos = 0, var = 0, i;
-	listint_t *prim = NULL, *seg = NULL;
+	int count = 0, pos[9999], j;
+	listint_t *prim = NULL;
 
-	if (head == NULL || *head == NULL)
+	if (head == NULL)
+		return (0);
+	if (*head == NULL)
 		return (1);
 	prim = *head;
-	seg = *head;
 	for (; prim; count++, prim = prim->next)
-		;
-	if ((count % 2) == 0)
-		var = count / 2;
-	else
-		var = (count / 2) + 1;
-	for (; var > 0; var--)
-		seg = seg->next;
-	for (i = 0; i < (count / 2); i++)
+		pos[count] = prim->n;
+	for (j = 0; j < count; j++, count--)
 	{
-		pos = i;
-		prim = *head;
-		while (pos < (count / 2) - 1)
-		{
-			prim = prim->next;
-			pos++;
-		}
-		if ((prim->n) == (seg->n))
-			seg = seg->next;
-		else
+		if (pos[j] != pos[count - 1])
 			return (0);
 	}
 	return (1);
