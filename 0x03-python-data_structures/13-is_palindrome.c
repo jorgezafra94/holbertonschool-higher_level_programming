@@ -9,7 +9,7 @@ int is_palindrome(listint_t **head)
 	int count = 0, pos = 0, var = 0, i;
 	listint_t *prim = NULL, *seg = NULL;
 
-	if (*head == NULL)
+	if (head == NULL || *head == NULL)
 		return (0);
 	prim = *head;
 	seg = *head;
