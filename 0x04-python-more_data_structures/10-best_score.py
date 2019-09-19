@@ -4,9 +4,9 @@ def best_score(a_dictionary):
     big = 0
     name = ""
     if a_dictionary is None:
-        return 
+        return None
     for element in a_dictionary:
-        if len(a_dictionary) == 0:
+        if len(a_dictionary[element]) == 0:
             return None
         if num == 0:
             big = a_dictionary[element]
