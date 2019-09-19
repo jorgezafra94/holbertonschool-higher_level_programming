@@ -6,7 +6,7 @@ def best_score(a_dictionary):
     if a_dictionary is None:
         return None
     for element in a_dictionary:
-        if len(a_dictionary[element]) == 0:
+        if not a_dictionary[element]:
             return None
         if num == 0:
             big = a_dictionary[element]
