@@ -45,7 +45,7 @@ void print_python_bytes(PyObject *p)
  */
 void print_python_list(PyObject *p)
 {
-	unsigned int i, j = Py_SIZE(p);
+	unsigned int i, j = (((PyVarObject *)(p))->ob_size);
 	PyObject *item;
 
 	if (PyList_Check(p))
