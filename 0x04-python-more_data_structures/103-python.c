@@ -7,7 +7,7 @@
  */
 void print_python_bytes(PyObject *p)
 {
-	int i;
+	long int i;
 	long int size;
 	char *word;
 
@@ -25,13 +25,13 @@ void print_python_bytes(PyObject *p)
 			size = 9;
 			printf("  first 10");
 		}
-		printf(" bytes: ");
+		printf(" bytes:");
 		for (i = 0; i <= size; i++)
 		{
 			if (word[i] < 0)
-				printf("%02x ", (256 + word[i]));
+				printf(" %02x", (256 + word[i]));
 			else
-				printf("%02x ", word[i]);
+				printf(" %02x", word[i]);
 		}
 		printf("\n");
 	}
