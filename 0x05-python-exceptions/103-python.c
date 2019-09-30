@@ -51,14 +51,13 @@ void print_python_bytes(PyObject *p)
 void print_python_float(PyObject *p)
 {
 	double vari = (((PyFloatObject *)(p))->ob_fval);
+	char *res = NULL;
 
 	printf("[.] float object info\n");
 	if (PyFloat_Check(p))
 	{
-		printf("  value: %.16g", vari);
-		if ((int)vari == vari)
-			printf(".0");
-		printf("\n");
+		res = PyOS_double_to_string(vari, 'r', 0, Py_DTSF_ADD_DOT_0, Py_DTST_FINITE);
+		printf("  value: %s\n", res);
 	}
 	else
 	{
