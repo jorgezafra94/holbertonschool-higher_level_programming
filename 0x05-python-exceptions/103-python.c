@@ -40,25 +40,26 @@ void print_python_bytes(PyObject *p)
 
 }
 /**
- * print_python_float - function that prints info about float elements in python
+ * print_python_float - function that prints
+ *info about float elements in python
  * @p : is a python object
  */
 void print_python_float(PyObject *p)
 {
 	double vari = (((PyFloatObject *)(p))->ob_fval);
 
-        printf("[.] float object info\n");
-        if (PyFloat_Check(p))
-        {
-                printf("  value: %.16g", vari);
+	printf("[.] float object info\n");
+	if (PyFloat_Check(p))
+	{
+		printf("  value: %.16g", vari);
 		if ((int)vari == vari)
 			printf(".0");
 		printf("\n");
-        }
-        else
-        {
-                printf("  [ERROR] Invalid Float Object\n");
-        }
+	}
+	else
+	{
+		printf("  [ERROR] Invalid Float Object\n");
+	}
 }
 /**
  * print_python_list - function that prints info about lists in python
