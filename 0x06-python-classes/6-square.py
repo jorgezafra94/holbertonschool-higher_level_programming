@@ -9,6 +9,8 @@ class Square:
             raise ValueError("size must be >= 0")
         if not isinstance(position, tuple):
             raise TypeError("position must be a tuple of 2 positive integers")
+        elif len(position) > 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
         else:
             flag = 0
             for i in position:
@@ -17,10 +19,6 @@ class Square:
                     raise TypeError("position must be a tuple\
  of 2 positive integers")
                 elif i < 0:
-                    flag = 1
-                    raise TypeError("position must be a tuple\
- of 2 positive integers")
-                elif i > 2:
                     flag = 1
                     raise TypeError("position must be a tuple\
  of 2 positive integers")
@@ -49,6 +47,8 @@ class Square:
         flag = 0
         if not isinstance(value, tuple):
             raise TypeError("position must be a tuple of 2 positive integers")
+        elif (len(value) > 2):
+            raise TypeError("position must be a tuple of 2 positive integers")
         else:
             for i in value:
                 if not isinstance(i, int):
@@ -56,10 +56,6 @@ class Square:
                     raise TypeError("position must be a tuple\
  of 2 positive integers")
                 elif i < 0:
-                    flag = 1
-                    raise TypeError("position must be a tuple\
- of 2 positive integers")
-                elif i > 2:
                     flag = 1
                     raise TypeError("position must be a tuple\
  of 2 positive integers")
