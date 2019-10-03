@@ -4,6 +4,8 @@
    Function that return the addition of two numbers
 
 """
+
+
 def add_integer(a, b=98):
     """
     Args:
