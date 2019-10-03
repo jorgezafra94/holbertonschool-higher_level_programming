@@ -1,0 +1,45 @@
+TESTS FOR 3-say_my_name
+================================
+>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+>>> say_my_name(2, 2)
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name(4)
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name(2, "Zafra")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name("jorge", 2)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
+
+>>> say_my_name("Jorge", "Zafra")
+My name is Jorge Zafra
+
+>>> say_my_name(None, "Zafra")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name("jorge", None)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
+
+>>> say_my_name("", "Zafra")
+My name is  Zafra
+
+>>> say_my_name("jorge", "")
+My name is jorge 
+
+>>> say_my_name("", "")
+My name is  
