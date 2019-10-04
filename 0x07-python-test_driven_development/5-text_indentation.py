@@ -1,15 +1,26 @@
 #!/usr/bin/python3
 """
-
+  function that prints the text in the correct way
 """
 
 
 def text_indentation(text):
     """
-    Args
+    Args:
+        text: string
+
+    Raises:
+        TypeError: text must be a string
+
+    Returns:
+        Text separed by \n if finds .?:
+
     """
     cont = 0
     new = ""
+    if not str or type(text) is not str:
+        raise TypeError('text must be a string')
+
     for i in text:
         if i == " " and cont == 0:
             continue
