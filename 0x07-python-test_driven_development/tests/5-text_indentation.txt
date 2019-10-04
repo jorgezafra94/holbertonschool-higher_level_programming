@@ -1,0 +1,60 @@
+TESTS FOR 5-text_indentation.py
+================================
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+>>> text_indentation(3.5)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(None)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation("holberton   :")
+holberton   :
+<BLANKLINE>
+
+>>> text_indentation("        holberton   .")
+holberton   .
+<BLANKLINE>
+
+>>> text_indentation("holberton                ")
+holberton
+
+>>> text_indentation("       holberton")
+holberton
+
+>>> text_indentation("")
+
+>>> text_indentation("\n")
+<BLANKLINE>
+
+>>> text_indentation("\n.\n?\n:")
+<BLANKLINE>
+.
+<BLANKLINE>
+<BLANKLINE>
+?
+<BLANKLINE>
+<BLANKLINE>
+:
+<BLANKLINE>
+>>> text_indentation("    \n      ")
+<BLANKLINE>
+
+>>> text_indentation("   hola. como vas? todo ok" + ".")
+hola.
+<BLANKLINE>
+como vas?
+<BLANKLINE>
+todo ok.
+<BLANKLINE>
