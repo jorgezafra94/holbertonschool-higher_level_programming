@@ -51,15 +51,13 @@ def matrix_mul(m_a, m_b):
 
     if len(m_a) == 0:
         raise ValueError("m_a can't be empty")
-    for m_aa in m_a:
-        if len(m_aa) == 0:
-            raise ValueError("m_a can't be empty")
+    if len(m_a) == 1 and len(m_a[0]) == 0:
+        raise ValueError("m_a can't be empty")
 
     if len(m_b) == 0:
         raise ValueError("m_b can't be empty")
-    for m_bb in m_b:
-        if len(m_bb) == 0:
-            raise ValueError("m_b can't be empty")
+    if len(m_b) == 1 and len(m_b[0]) == 0:
+        raise ValueError("m_b can't be empty")
 
     for m_aa in m_a:
         for i in m_aa:
