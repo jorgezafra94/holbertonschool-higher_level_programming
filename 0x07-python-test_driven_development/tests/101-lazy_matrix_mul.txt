@@ -100,3 +100,17 @@ TypeError: matmul() missing required argument 'b' (pos 2)
 Traceback (most recent call last):
     ...
 TypeError: matmul() missing required argument 'a' (pos 1)
+
+------------------------------------------------------------------------
+>>> lazy_matrix_mul("holberton", [[1 ,2], [3, 4]])
+Traceback (most recent call last):
+    ...
+ValueError: Scalar operands are not allowed, use '*' instead
+
+--------------------------------------------------------------------------
+>>> lazy_matrix_mul([[1, 2], [3, 4]], "holby")
+Traceback (most recent call last):
+    ...
+ValueError: Scalar operands are not allowed, use '*' instead
+
+-------------------------------------------------------------------------
