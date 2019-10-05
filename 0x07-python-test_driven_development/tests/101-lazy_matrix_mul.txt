@@ -84,16 +84,16 @@ Traceback (most recent call last):
 ValueError: shapes (2,2) and (0,) not aligned: 2 (dim 1) != 0 (dim 0)
 
 ------------------------------------------------------------------------
->>> lazy_matrix_mul([[1, 2],[2, 3]])
+>>> lazy_matrix_mul([[1, 2], [2, 3]])
 Traceback (most recent call last):
     ...
-TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+TypeError: matmul() missing required argument 'b' (pos 2)
 
 ------------------------------------------------------------------------
 >>> lazy_matrix_mul()
 Traceback (most recent call last):
     ...
-TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+TypeError: matmul() missing required argument 'a' (pos 1)
 
 ------------------------------------------------------------------------
 >>> lazy_matrix_mul("holberton", [[1 ,2], [3, 4]])
@@ -131,3 +131,11 @@ ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
 Traceback (most recent call last):
     ...
 ValueError: shapes (0,) and (2,2) not aligned: 0 (dim 0) != 2 (dim 0)
+
+----------------------------------------------------------------------------
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4, 8], [1, 2]])
+Traceback (most recent call last):
+    ...
+ValueError: setting an array element with a sequence.
+
+---------------------------------------------------------------------------
