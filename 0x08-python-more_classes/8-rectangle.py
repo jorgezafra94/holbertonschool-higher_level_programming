@@ -16,6 +16,8 @@ class Rectangle:
         TypeError:
                  * width must be an integer
                  * height must be an integer
+                 * rect_1 must be an instance of Rectangle
+                 * rect_2 must be an instance of Rectangle
         ValueError:
                  * width must be >= 0
                  * height must be >= 0
