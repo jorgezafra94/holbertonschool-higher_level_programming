@@ -5,7 +5,7 @@ class MyInt(int):
         self.__size = size
 
     def __eq__(self, other):
-        return False
+        return int.__ne__(self, other)
 
     def __ne__(self, other):
-        return True
+        return int.__eq__(self, other)
