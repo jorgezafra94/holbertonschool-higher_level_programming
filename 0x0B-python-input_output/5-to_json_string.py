@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+create the json-string from an object
 """
 
 
