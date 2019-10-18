@@ -4,7 +4,7 @@ class square that is an inheritance of Rectangle class
 """
 
 
-import models.rectangle from Rectangle
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
