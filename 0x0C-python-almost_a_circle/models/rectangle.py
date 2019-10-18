@@ -9,11 +9,11 @@ from models.base import Base
 class Rectangle(Base):
     """
     Args:
-        * width: instance attribute
-        * height: instance attribute
-        * x: instance attribute
-        * y: instance attribute
-    Functions:
+        * width: width of the rectangle
+        * height: height of the rectangle
+        * x: position in x
+        * y: position in y
+    Methods:
         * area: returns the area of the rectangle
         * display: print the rectangle
         * __str__: print ecuation
