@@ -98,9 +98,13 @@ class Rectangle(Base):
         args = (self.id, self.__x, self.__y, self.__width, self.__height)
         return("[Rectangle] ({}) {}/{} - {}/{}".format(*args))
 
-    def update(self, *args):
-        lista = ['id', 'width', 'height', 'x', 'y']
-        cont = 0
-        for arg in args:
-            setattr(self, lista[cont], arg)
-            cont += 1
+    def update(self, *args, **kwargs):
+        if args is not None and len(args) != 0:
+            cont = 0
+            lista = ['id', 'width', 'height', 'x', 'y']
+            for arg in args:
+                setattr(self, lista[cont], arg)
+                cont += 1
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
