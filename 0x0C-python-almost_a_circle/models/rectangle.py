@@ -16,6 +16,7 @@ class Rectangle(Base):
     Functions:
         * area: returns the area of the rectangle
         * display: print the rectangle
+        * __str__: print ecuation
     """
     def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
