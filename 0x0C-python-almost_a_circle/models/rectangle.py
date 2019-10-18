@@ -13,6 +13,9 @@ class Rectangle(Base):
         * height: instance attribute
         * x: instance attribute
         * y: instance attribute
+    Functions:
+        * area: returns the area of the rectangle
+        * display: print the rectangle
     """
     def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
@@ -79,3 +82,9 @@ class Rectangle(Base):
 
     def area(self):
         return (self.__width * self.__height)
+
+    def display(self):
+        for i in range(self.__height):
+            for j in range(self.__width):
+                print("#", end="")
+            print()
