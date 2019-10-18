@@ -17,6 +17,7 @@ class Rectangle(Base):
         * area: returns the area of the rectangle
         * display: print the rectangle
         * __str__: print ecuation
+        * update: update the values of the instance attributes
     """
     def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
@@ -96,3 +97,10 @@ class Rectangle(Base):
     def __str__(self):
         args = (self.id, self.__x, self.__y, self.__width, self.__height)
         return("[Rectangle] ({}) {}/{} - {}/{}".format(*args))
+
+    def update(self, *args):
+        lista = ['id', 'width', 'height', 'x', 'y']
+        cont = 0
+        for arg in args:
+            setattr(self, lista[cont], arg)
+            cont += 1
