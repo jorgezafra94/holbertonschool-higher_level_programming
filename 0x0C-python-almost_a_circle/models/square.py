@@ -17,6 +17,7 @@ class Square(Rectangle):
     methods:
         * __str__: print ecuation
         * update: updates the instance attributes
+        * dictionary: return the dictionary representation of the object
     """
     elem = 0
 
@@ -52,3 +53,12 @@ class Square(Rectangle):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def to_dictionary(self):
+        new = {}
+        value = 0
+        lista = ['id', 'size', 'x', 'y']
+        for cont in range(len(lista)):
+            value = getattr(self, lista[cont])
+            new[lista[cont]] = value
+        return (new)
