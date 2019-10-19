@@ -16,6 +16,7 @@ class Square(Rectangle):
         * id: id of square
     methods:
         * __str__: print ecuation
+        * update: updates the instance attributes
     """
     elem = 0
 
@@ -38,5 +39,16 @@ class Square(Rectangle):
             raise TypeError("width must be an integer")
 
     def __str__(self):
-        args = [self.id, self.x, self.y, self.width]
+        args = [self.id, self.x, self.y, self.size]
         return ("[Square] ({}) {}/{} - {}".format(*args))
+
+    def update(self, *args, **kwargs):
+        if args is not None and len(args) != 0:
+            cont = 0
+            lista = ['id', 'size', 'x', 'y']
+            for arg in args:
+                setattr(self, lista[cont], arg)
+                cont += 1
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
