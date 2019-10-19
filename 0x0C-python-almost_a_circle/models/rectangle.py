@@ -111,4 +111,11 @@ class Rectangle(Base):
                 setattr(self, key, value)
 
     def to_dictionary(self):
-        return (self.__dict__)
+        new = {}
+        obj = self.__dict__
+        lista = ['id', 'width', 'height', 'x', 'y']
+        value = 0
+        for cont in range(len(lista)):
+            value = getattr(self, lista[cont])
+            new[lista[cont]] = value
+        return (new)
