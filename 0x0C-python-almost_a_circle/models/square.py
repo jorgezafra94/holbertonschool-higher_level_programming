@@ -44,15 +44,17 @@ class Square(Rectangle):
         return ("[Square] ({}) {}/{} - {}".format(*args))
 
     def update(self, *args, **kwargs):
+        lista = ['id', 'size', 'x', 'y']
         if args is not None and len(args) != 0:
             cont = 0
-            lista = ['id', 'size', 'x', 'y']
             for arg in args:
                 setattr(self, lista[cont], arg)
                 cont += 1
         else:
             for key, value in kwargs.items():
-                setattr(self, key, value)
+                for elem in lista:
+                    if elem == key:
+                        setattr(self, key, value)
 
     def to_dictionary(self):
         new = {}
