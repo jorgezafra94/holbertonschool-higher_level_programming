@@ -18,6 +18,7 @@ class Rectangle(Base):
         * display: print the rectangle
         * __str__: print ecuation
         * update: update the values of the instance attributes
+        * dictionary: return the dictionary represntation of the instance
     """
     def __init__(self, width, height, x=0, y=0, id=None):
         self.width = width
@@ -108,3 +109,6 @@ class Rectangle(Base):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def to_dictionary(self):
+        return (self.__dict__)
