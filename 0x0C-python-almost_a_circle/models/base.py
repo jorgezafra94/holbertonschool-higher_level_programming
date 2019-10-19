@@ -4,6 +4,7 @@ main class of all the proyect
 
 """
 
+import csv
 import os
 import json
 
@@ -82,4 +83,31 @@ class Base:
                     inst.append(cls.create(**elem))
             return(inst)
         else:
-            return (variable)
+            return (result)
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        filename = cls.__name__ + ".csv"
+        result = ""
+        new = []
+        with open(filename, 'w') as fd:
+            if list_objs is None:
+                result = csv.writer(fd, delimiter=',')
+                result.writerow([])
+            else:
+                result = csv.writer(fd, delimiter=',')
+                for elem in list_objs:
+                    new.append(elem.to_dictionary())
+                result.writerow(new)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        filename = cls.__name__ + ".csv"
+        inst = []
+        new = []
+        if os.path.exists(filename) is True:
+            with open(filename, 'r') as fd:
+                result = csv.reader(fd, delimiter=',')
+            return(inst)
+        else:
+            return(result)
