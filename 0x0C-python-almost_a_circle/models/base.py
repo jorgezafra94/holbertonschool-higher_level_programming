@@ -18,6 +18,7 @@ class Base:
 
         * to_json_string: return an object in json format
         * save_to_fie: save in a fil the dicts of each instance passed
+        * from_json_string: return an object from a json string
         """
         if id is None:
             Base.__nb_objects += 1
@@ -46,3 +47,10 @@ class Base:
                     new.append(elem.to_dictionary())
                 result = cls.to_json_string(new)
             fd.write(result)
+
+    @staticmethod
+    def from_json_string(json_string):
+        if json_string is None or len(json_string) == 0:
+            return ([])
+        else:
+            return (json.loads(json_string))
