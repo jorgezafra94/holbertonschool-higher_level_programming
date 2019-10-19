@@ -4,6 +4,7 @@ main class of all the proyect
 
 """
 
+import os
 import json
 
 
@@ -66,3 +67,19 @@ class Base:
             dummy = cls(5)
         dummy.update(**dictionary)
         return (dummy)
+
+    @classmethod
+    def load_from_file(cls):
+        filename = cls.__name__ + ".json"
+        variable = ""
+        result = []
+        inst = []
+        if os.path.exists(filename) is True:
+            with open(filename, 'r') as fd:
+                variable = fd.read()
+                result = cls.from_json_string(variable)
+                for elem in result:
+                    inst.append(cls.create(**elem))
+            return(inst)
+        else:
+            return (variable)
