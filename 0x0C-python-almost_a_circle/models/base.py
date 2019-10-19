@@ -19,6 +19,9 @@ class Base:
         * to_json_string: return an object in json format
         * save_to_fie: save in a fil the dicts of each instance passed
         * from_json_string: return an object from a json string
+        * create: create a new instance depending of the cls.__name__
+                 it is necesary to initialize the variables width, height
+                 if it is Rectangle or size if it is Square
         """
         if id is None:
             Base.__nb_objects += 1
@@ -54,3 +57,12 @@ class Base:
             return ([])
         else:
             return (json.loads(json_string))
+
+    @classmethod
+    def create(cls, **dictionary):
+        if cls.__name__ == "Rectangle":
+            dummy = cls(2, 2)
+        if cls.__name__ == "Square":
+            dummy = cls(5)
+        dummy.update(**dictionary)
+        return (dummy)
