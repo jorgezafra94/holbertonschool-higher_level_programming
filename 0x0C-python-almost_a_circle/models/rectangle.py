@@ -100,15 +100,17 @@ class Rectangle(Base):
         return("[Rectangle] ({}) {}/{} - {}/{}".format(*args))
 
     def update(self, *args, **kwargs):
+        lista = ['id', 'width', 'height', 'x', 'y']
         if args is not None and len(args) != 0:
             cont = 0
-            lista = ['id', 'width', 'height', 'x', 'y']
             for arg in args:
                 setattr(self, lista[cont], arg)
                 cont += 1
         else:
             for key, value in kwargs.items():
-                setattr(self, key, value)
+                for elem in lista:
+                    if (elem == key):
+                        setattr(self, key, value)
 
     def to_dictionary(self):
         new = {}
