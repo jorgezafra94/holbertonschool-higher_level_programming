@@ -90,24 +90,44 @@ class Base:
         filename = cls.__name__ + ".csv"
         result = ""
         new = []
+        big = []
         with open(filename, 'w') as fd:
             if list_objs is None:
                 result = csv.writer(fd, delimiter=',')
                 result.writerow([])
             else:
                 result = csv.writer(fd, delimiter=',')
-                for elem in list_objs:
-                    new.append(elem.to_dictionary())
-                result.writerow(new)
+                if cls.__name__ == "Rectangle":
+                    for elem in list_objs:
+                        new = [elem.id, elem.width, elem.height, elem.x, elem.y]
+                        big.append(new)
+                if cls.__name__ == "Square":
+                    for elem in list_objs:
+                        new = [elem.id, elem.size, elem.x, elem.y]
+                        big.append(new)
+                result.writerow(big)
 
     @classmethod
     def load_from_file_csv(cls):
         filename = cls.__name__ + ".csv"
         inst = []
-        new = []
+        d = {}
         if os.path.exists(filename) is True:
-            with open(filename, 'r') as fd:
+            with open(filename) as fd:
                 result = csv.reader(fd, delimiter=',')
+                for row in result:
+                    for elem in row:
+                        a = json.loads(elem)
+                        del a[0]
+                        if cls.__name__ == "Rectangle":
+                            new = ['id', 'width', 'height', 'x', 'y']
+                            for i in range(len(a)):
+                                d[new[i]] = a[i]
+                        if cls.__name__ == "square":
+                            new = ['id', 'size', 'x', 'y']
+                            for i in range(len(a)):
+                                d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
             return(inst)
         else:
             return(result)
