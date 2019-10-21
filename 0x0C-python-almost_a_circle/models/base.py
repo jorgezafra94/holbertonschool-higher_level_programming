@@ -24,6 +24,9 @@ class Base:
         * create: create a new instance depending of the cls.__name__
                  it is necesary to initialize the variables width, height
                  if it is Rectangle or size if it is Square
+        * load_from_file: reads fro file.json and returns the objects
+        * save_to_file_csv: save a dir in a csv file
+        * load_from_file_csv: loads froom csv file and create objects
         """
         if id is None:
             Base.__nb_objects += 1
@@ -99,12 +102,18 @@ class Base:
                 result = csv.writer(fd, delimiter=',')
                 if cls.__name__ == "Rectangle":
                     for elem in list_objs:
-                        new = [elem.id, elem.width, elem.height, elem.x, elem.y]
-                        big.append(new)
+                        new = ['id', 'width', 'height', 'x', 'y']
+                        var = []
+                        for i in new:
+                            var.append(getattr(elem, i))
+                        big.append(var)
                 if cls.__name__ == "Square":
                     for elem in list_objs:
-                        new = [elem.id, elem.size, elem.x, elem.y]
-                        big.append(new)
+                        new = ['id', 'size', 'x', 'y']
+                        var = []
+                        for i in new:
+                            var.append(getattr(elem, i))
+                        big.append(var)
                 result.writerow(big)
 
     @classmethod
@@ -118,16 +127,16 @@ class Base:
                 for row in result:
                     for elem in row:
                         a = json.loads(elem)
-                        del a[0]
                         if cls.__name__ == "Rectangle":
                             new = ['id', 'width', 'height', 'x', 'y']
                             for i in range(len(a)):
                                 d[new[i]] = a[i]
-                        if cls.__name__ == "square":
+                            inst.append(cls.create(**d))
+                        if cls.__name__ == "Square":
                             new = ['id', 'size', 'x', 'y']
                             for i in range(len(a)):
                                 d[new[i]] = a[i]
-                        inst.append(cls.create(**d))
+                            inst.append(cls.create(**d))
             return(inst)
         else:
             return(result)
