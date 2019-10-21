@@ -106,15 +106,14 @@ class Base:
                         var = []
                         for i in new:
                             var.append(getattr(elem, i))
-                        big.append(var)
+                        result.writerow(var)
                 if cls.__name__ == "Square":
                     for elem in list_objs:
                         new = ['id', 'size', 'x', 'y']
                         var = []
                         for i in new:
                             var.append(getattr(elem, i))
-                        big.append(var)
-                result.writerow(big)
+                        result.writerow(var)
 
     @classmethod
     def load_from_file_csv(cls):
@@ -125,18 +124,20 @@ class Base:
             with open(filename) as fd:
                 result = csv.reader(fd, delimiter=',')
                 for row in result:
+                    a = []
                     for elem in row:
-                        a = json.loads(elem)
-                        if cls.__name__ == "Rectangle":
-                            new = ['id', 'width', 'height', 'x', 'y']
-                            for i in range(len(a)):
-                                d[new[i]] = a[i]
-                            inst.append(cls.create(**d))
-                        if cls.__name__ == "Square":
-                            new = ['id', 'size', 'x', 'y']
-                            for i in range(len(a)):
-                                d[new[i]] = a[i]
-                            inst.append(cls.create(**d))
+                        a.append(int(elem))
+
+                    if cls.__name__ == "Rectangle":
+                        new = ['id', 'width', 'height', 'x', 'y']
+                        for i in range(len(a)):
+                            d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
+                    if cls.__name__ == "Square":
+                        new = ['id', 'size', 'x', 'y']
+                        for i in range(len(a)):
+                            d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
             return(inst)
         else:
             return(result)
