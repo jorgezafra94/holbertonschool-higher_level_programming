@@ -43,8 +43,9 @@ class Square(Rectangle):
         if args is not None and len(args) != 0:
             cont = 0
             for arg in args:
-                setattr(self, lista[cont], arg)
-                cont += 1
+                if cont < 4:
+                    setattr(self, lista[cont], arg)
+                    cont += 1
         else:
             for key, value in kwargs.items():
                 for elem in lista:
