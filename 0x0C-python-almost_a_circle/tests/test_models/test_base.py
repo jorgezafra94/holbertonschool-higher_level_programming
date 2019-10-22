@@ -3,7 +3,7 @@
 Unittest for base class
 """
 
-
+import json
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -11,7 +11,7 @@ from models.square import Square
 
 
 class Testbaseclass(unittest.TestCase):
-
+    """ test for base"""
     def testcreateelems(self):
         b = Base()
         b1 = Base(76)
@@ -20,5 +20,28 @@ class Testbaseclass(unittest.TestCase):
         self.assertEqual(b1.id, 76)
         self.assertEqual(b2.id, 2)
 
-if __name__ == "__main__":
-    unittest.main()
+    def testsetid(self):
+        b = Base("h")
+        b1 = Base({1: 2})
+        b2 = Base((1, 4))
+        b3 = Base([3, 6])
+        b4 = Base(None)
+        self.assertEqual(b.id, "h")
+        self.assertEqual(b1.id, {1: 2})
+        self.assertEqual(b2.id, (1, 4))
+        self.assertEqual(b3.id, [3, 6])
+        self.assertEqual(b4.id, 4)
+
+#     --------- private attribute of class --------
+
+    def testprivate(self):
+        b = Base()
+        with self.assertRaises(AttributeError):
+            b.__nb_objects
+
+#    -------------- static method to_json_string -----------
+
+    def testtojson(self):
+        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
+        stdic = json.dumps([dic])
+        self.assertEqual(Square.to_json_string([dic]), stdic)
