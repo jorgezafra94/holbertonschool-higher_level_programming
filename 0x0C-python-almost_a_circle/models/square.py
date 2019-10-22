@@ -22,7 +22,6 @@ class Square(Rectangle):
     elem = 0
 
     def __init__(self, size, x=0, y=0, id=None):
-        self.size = size
         super().__init__(size, size, x, y, id)
 
     @property
@@ -35,11 +34,11 @@ class Square(Rectangle):
         self.height = size
 
     def __str__(self):
-        args = [self.id, self.x, self.y, self.size]
+        args = [self.id, self.x, self.y, self.width]
         return ("[Square] ({}) {}/{} - {}".format(*args))
 
     def update(self, *args, **kwargs):
-        lista = ['id', 'size', 'x', 'y']
+        lista = ['id', 'width', 'x', 'y']
         if args is not None and len(args) != 0:
             cont = 0
             for arg in args:
@@ -51,12 +50,17 @@ class Square(Rectangle):
                 for elem in lista:
                     if elem == key:
                         setattr(self, key, value)
+                if key == 'size':
+                    setattr(self, 'width', value)
 
     def to_dictionary(self):
         new = {}
         value = 0
         lista = ['id', 'size', 'x', 'y']
         for cont in range(len(lista)):
-            value = getattr(self, lista[cont])
+            if lista[cont] == 'size':
+                value = getattr(self, 'width')
+            else:
+                value = getattr(self, lista[cont])
             new[lista[cont]] = value
         return (new)
