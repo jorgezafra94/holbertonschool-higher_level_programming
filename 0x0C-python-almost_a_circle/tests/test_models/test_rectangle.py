@@ -2,6 +2,7 @@
 """
 Unittest for Rectangle Class
 """
+import json
 from io import StringIO
 from unittest.mock import patch
 import unittest
@@ -299,3 +300,55 @@ class TestRectangle(unittest.TestCase):
         self.assertTrue(hasattr(r, 'x'))
         self.assertTrue(hasattr(r, 'y'))
         self.assertTrue(hasattr(r, 'id'))
+
+#    -------------- static method to_json_string -----------
+
+    def testtojson(self):
+        """ test to json"""
+        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
+        stdic = json.dumps([dic])
+        self.assertEqual(Rectangle.to_json_string([dic]), stdic)
+        r = Rectangle.to_json_string(None)
+        self.assertEqual(r, "[]")
+        r = Rectangle.to_json_string([])
+        self.assertEqual(r, "[]")
+        dic = [1, 2, 3]
+        r = Rectangle.to_json_string([dic])
+        self.assertEqual(r, "[[1, 2, 3]]")
+
+    def testtojson1(self):
+        """error json"""
+        with self.assertRaises(TypeError):
+            Rectangle.to_json_string()
+
+#   --------------  save to file -------------------------
+
+    def testsavetofile(self):
+        """ test save to file"""
+        Rectangle.save_to_file([])
+        with open("Rectangle.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+
+    def testsavetofile1(self):
+        """ error save to file"""
+        with self.assertRaises(AttributeError):
+            Rectangle.save_to_string()
+
+#    ----------------- from json --------------------------
+
+    def testfromjson(self):
+        """ test load from json"""
+        self.assertEqual(Rectangle.from_json_string("[]"), [])
+        self.assertEqual(Rectangle.from_json_string(None), [])
+        self.assertEqual(Rectangle.from_json_string(""), [])
+        lista = [1, 2, 3]
+        r = Rectangle.to_json_string(lista)
+        self.assertEqual(Rectangle.from_json_string(r), lista)
+
+    def testfromjson1(self):
+        """ error save to file"""
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string()
