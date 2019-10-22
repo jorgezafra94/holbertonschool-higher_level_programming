@@ -81,6 +81,14 @@ class Testbaseclass(unittest.TestCase):
         self.assertEqual(r, "[[1, 2, 3]]")
 
 
+    def testtojson(self):
+        """error json"""
+        with self.assertRaises(TypeError):
+            Base.to_json_string()
+        with self.assertRaises(TypeError):
+            Rectangle.to_json_string()
+        with self.assertRaises(TypeError):
+            Square.to_json_string()
 # ------------------ pep8 ----------------------------------
 def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
