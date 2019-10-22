@@ -58,41 +58,39 @@ class Testbaseclass(unittest.TestCase):
         r = Base.to_json_string([dic])
         self.assertEqual(r, "[[1, 2, 3]]")
 
-        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
-        stdic = json.dumps([dic])
-        self.assertEqual(Rectangle.to_json_string([dic]), stdic)
-        r = Rectangle.to_json_string(None)
-        self.assertEqual(r, "[]")
-        r = Rectangle.to_json_string([])
-        self.assertEqual(r, "[]")
-        dic = [1, 2, 3]
-        r = Rectangle.to_json_string([dic])
-        self.assertEqual(r, "[[1, 2, 3]]")
-
-        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
-        stdic = json.dumps([dic])
-        self.assertEqual(Square.to_json_string([dic]), stdic)
-        r = Square.to_json_string(None)
-        self.assertEqual(r, "[]")
-        r = Square.to_json_string([])
-        self.assertEqual(r, "[]")
-        dic = [1, 2, 3]
-        r = Square.to_json_string([dic])
-        self.assertEqual(r, "[[1, 2, 3]]")
-
-
     def testtojson1(self):
         """error json"""
         with self.assertRaises(TypeError):
             Base.to_json_string()
+
+#   --------------  save to file -------------------------
+
+    def testsavetofile(self):
+        """ test save to file"""
+        Base.save_to_file([])
+        with open("Base.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+        Base.save_to_file(None)
+        with open("Base.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+
+    def testsavetofile1(self):
+        """ error save to file"""
+        with self.assertRaises(AttributeError):
+            Base.save_to_string()
+
+#    ----------------- from json --------------------------
+
+    def testfromjson(self):
+        """ test load from json"""
+        self.assertEqual(Base.from_json_string("[]"), [])
+        self.assertEqual(Base.from_json_string(None), [])
+        self.assertEqual(Base.from_json_string(""), [])
+        lista = [1, 2, 3]
+        r = Base.to_json_string(lista)
+        self.assertEqual(Base.from_json_string(r), lista)
+
+    def testfromjson1(self):
+        """ error save to file"""
         with self.assertRaises(TypeError):
-            Rectangle.to_json_string()
-        with self.assertRaises(TypeError):
-            Square.to_json_string()
-# ------------------ pep8 ----------------------------------
-def test_pep8_conformance(self):
-        """Test that we conform to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['file1.py', 'file2.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+            Base.from_json_string()
