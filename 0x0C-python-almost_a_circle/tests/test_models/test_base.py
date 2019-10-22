@@ -27,11 +27,13 @@ class Testbaseclass(unittest.TestCase):
         b2 = Base((1, 4))
         b3 = Base([3, 6])
         b4 = Base(None)
+        b5 = Base(0)
         self.assertEqual(b.id, "h")
         self.assertEqual(b1.id, {1: 2})
         self.assertEqual(b2.id, (1, 4))
         self.assertEqual(b3.id, [3, 6])
         self.assertEqual(b4.id, 4)
+        self.assertEqual(b5.id, 0)
 
 #     --------- private attribute of class --------
 
@@ -47,7 +49,37 @@ class Testbaseclass(unittest.TestCase):
         """ test to json"""
         dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
         stdic = json.dumps([dic])
+        self.assertEqual(Base.to_json_string([dic]), stdic)
+        r = Base.to_json_string(None)
+        self.assertEqual(r, "[]")
+        r = Base.to_json_string([])
+        self.assertEqual(r, "[]")
+        dic = [1, 2, 3]
+        r = Base.to_json_string([dic])
+        self.assertEqual(r, "[[1, 2, 3]]")
+
+        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
+        stdic = json.dumps([dic])
+        self.assertEqual(Rectangle.to_json_string([dic]), stdic)
+        r = Rectangle.to_json_string(None)
+        self.assertEqual(r, "[]")
+        r = Rectangle.to_json_string([])
+        self.assertEqual(r, "[]")
+        dic = [1, 2, 3]
+        r = Rectangle.to_json_string([dic])
+        self.assertEqual(r, "[[1, 2, 3]]")
+
+        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
+        stdic = json.dumps([dic])
         self.assertEqual(Square.to_json_string([dic]), stdic)
+        r = Square.to_json_string(None)
+        self.assertEqual(r, "[]")
+        r = Square.to_json_string([])
+        self.assertEqual(r, "[]")
+        dic = [1, 2, 3]
+        r = Square.to_json_string([dic])
+        self.assertEqual(r, "[[1, 2, 3]]")
+
 
 # ------------------ pep8 ----------------------------------
 def test_pep8_conformance(self):
