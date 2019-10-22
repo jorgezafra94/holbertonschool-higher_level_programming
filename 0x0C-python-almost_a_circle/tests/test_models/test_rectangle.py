@@ -271,3 +271,8 @@ class TestRectangle(unittest.TestCase):
         self.assertTrue(isinstance(r, Base))
         self.assertTrue(issubclass(Rectangle, Base))
         self.assertTrue(type(r) is Rectangle)
+        self.assertTrue(hasattr(r, 'width'))
+        self.assertTrue(hasattr(r, 'height'))
+        self.assertTrue(hasattr(r, 'x'))
+        self.assertTrue(hasattr(r, 'y'))
+        self.assertTrue(hasattr(r, 'id'))

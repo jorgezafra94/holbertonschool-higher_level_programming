@@ -9,6 +9,7 @@ from models.rectangle import Rectangle
 from models.base import Base
 from models.square import Square
 
+
 class TestSquare(unittest.TestCase):
 
     def testcreateelems(self):
@@ -243,3 +244,9 @@ class TestSquare(unittest.TestCase):
         self.assertTrue(issubclass(Square, Base))
         self.assertTrue(issubclass(Square, Rectangle))
         self.assertTrue(type(r) is Square)
+        self.assertTrue(hasattr(r, 'id'))
+        self.assertTrue(hasattr(r, 'size'))
+        self.assertTrue(hasattr(r, 'width'))
+        self.assertTrue(hasattr(r, 'height'))
+        self.assertTrue(hasattr(r, 'x'))
+        self.assertTrue(hasattr(r, 'y'))
