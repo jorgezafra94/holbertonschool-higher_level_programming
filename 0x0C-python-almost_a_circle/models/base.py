@@ -18,15 +18,6 @@ class Base:
         if id is None increment the private class attribute __nb_objects
         else asign to self.id the value of id
 
-        * to_json_string: return an object in json format
-        * save_to_fie: save in a fil the dicts of each instance passed
-        * from_json_string: return an object from a json string
-        * create: create a new instance depending of the cls.__name__
-                 it is necesary to initialize the variables width, height
-                 if it is Rectangle or size if it is Square
-        * load_from_file: reads fro file.json and returns the objects
-        * save_to_file_csv: save a dir in a csv file
-        * load_from_file_csv: loads froom csv file and create objects
         """
         if id is None:
             Base.__nb_objects += 1
@@ -37,6 +28,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
+        """  to_json_string: return an object in json format"""
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return ("[]")
         else:
@@ -44,6 +36,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
+        """  save_to_fie: save in a fil the dicts of each instance passed"""
         filename = cls.__name__ + ".json"
         new = []
         result = ""
@@ -58,6 +51,7 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
+        """  from_json_string: return an object from a json string"""
         if json_string is None or len(json_string) == 0:
             return ([])
         else:
@@ -65,6 +59,11 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
+        """
+        create: create a new instance depending of the cls.__name__
+        it is necesary to initialize the variables width, height
+        if it is Rectangle or size if it is Square
+        """
         if cls.__name__ == "Rectangle":
             dummy = cls(2, 2)
         if cls.__name__ == "Square":
@@ -74,6 +73,9 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
+        """
+        load_from_file: reads fro file.json and returns the objects
+        """
         filename = cls.__name__ + ".json"
         variable = ""
         result = []
@@ -90,6 +92,9 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
+        """
+        save_to_file_csv: save a dir in a csv file
+        """
         filename = cls.__name__ + ".csv"
         result = ""
         new = []
@@ -117,6 +122,9 @@ class Base:
 
     @classmethod
     def load_from_file_csv(cls):
+        """
+        load_from_file_csv: loads froom csv file and create objects
+        """
         filename = cls.__name__ + ".csv"
         inst = []
         d = {}
