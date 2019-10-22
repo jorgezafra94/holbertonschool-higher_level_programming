@@ -6,6 +6,7 @@ from io import StringIO
 from unittest.mock import patch
 import unittest
 from models.rectangle import Rectangle
+from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
@@ -141,6 +142,19 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(6, 5, 0, 0)
         self.assertEqual(r.y, 0)
 
+#    ---------------------- id ----------------------------
+
+    def testid(self):
+        r = Rectangle(2, 3, 4, 5, 6)
+        self.assertEqual(r.id, 6)
+        r = Rectangle(2, 3, 4, 5, "6")
+        self.assertEqual(r.id, "6")
+        r = Rectangle(2, 3, 4, 5, {'id': 3})
+        self.assertEqual(r.id, {'id': 3})
+        r = Rectangle(2, 3, 4, 5, (1, 2))
+        self.assertEqual(r.id, (1, 2))
+        r = Rectangle(2, 3, 4, 5, [2, 4])
+        self.assertEqual(r.id, [2, 4])
 
 #    -----------  Area    ---------------------------------
 
@@ -208,7 +222,7 @@ class TestRectangle(unittest.TestCase):
         r.update()
         self.assertEqual(str(r), "[Rectangle] (1) 5/1 - 2/4")
 
-        di = {'x' : 10, 'y': 20}
+        di = {'x': 10, 'y': 20}
         r.update(**di)
         self.assertEqual(str(r), "[Rectangle] (1) 10/20 - 2/4")
 
@@ -235,7 +249,7 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r.to_dictionary(9)
 
-#    -------------------------------------------------------------
+#    ------------------------- no Arguments -------------------------------
     def testfargument1(self):
         with self.assertRaises(TypeError):
             r = Rectangle()
@@ -247,3 +261,13 @@ class TestRectangle(unittest.TestCase):
     def testfargument3(self):
         with self.assertRaises(TypeError):
             r = Rectangle(1, 2, 3, 4, 5, 6)
+
+
+#    -------------------instance and inheritance ----------------------------
+
+    def testinstandclass(self):
+        r = Rectangle(4, 5)
+        self.assertTrue(isinstance(r, Rectangle))
+        self.assertTrue(isinstance(r, Base))
+        self.assertTrue(issubclass(Rectangle, Base))
+        self.assertTrue(type(r) is Rectangle)
