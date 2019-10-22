@@ -14,30 +14,31 @@ class Square(Rectangle):
         * x: position
         * y: position
         * id: id of square
-    methods:
-        * __str__: print ecuation
-        * update: updates the instance attributes
-        * dictionary: return the dictionary representation of the object
     """
     elem = 0
 
     def __init__(self, size, x=0, y=0, id=None):
+        """ initialization """
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
+        """ return width """
         return (self.width)
 
     @size.setter
     def size(self, size):
+        """ setting size in width and height"""
         self.width = size
         self.height = size
 
     def __str__(self):
+        """ python3 -m unittest tests/test_models/test_base.py"""
         args = [self.id, self.x, self.y, self.width]
         return ("[Square] ({}) {}/{} - {}".format(*args))
 
     def update(self, *args, **kwargs):
+        """ update: updates the instance attributes"""
         lista = ['id', 'width', 'x', 'y']
         if args is not None and len(args) != 0:
             cont = 0
@@ -54,6 +55,7 @@ class Square(Rectangle):
                     setattr(self, 'width', value)
 
     def to_dictionary(self):
+        """ dictionary: return the dictionary representation of the object"""
         new = {}
         value = 0
         lista = ['id', 'size', 'x', 'y']
