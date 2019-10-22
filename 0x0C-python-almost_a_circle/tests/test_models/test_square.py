@@ -11,8 +11,12 @@ from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
+    """
+    test for class Square
+    """
 
     def testcreateelems(self):
+        """ create elements"""
         r = Square(1)
         r1 = Square(2, 5)
         r2 = Square(6, 8, 10)
@@ -29,6 +33,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(r3.id, 90)
 
     def testgetandset(self):
+        """ set values"""
         r = Square(5)
         self.assertEqual(r.size, 5)
         r.size = 9
@@ -46,6 +51,7 @@ class TestSquare(unittest.TestCase):
 #   ---------- tests for size -----------------------
 
     def testsize(self):
+        """test size"""
         with self.assertRaises(TypeError):
             r = Square("hola")
 
@@ -69,6 +75,7 @@ class TestSquare(unittest.TestCase):
 
 #   ---------- tests for x -----------------------------
     def testx(self):
+        """test x"""
         with self.assertRaises(TypeError):
             r = Square(2, "hola")
 
@@ -88,6 +95,7 @@ class TestSquare(unittest.TestCase):
             r = Square(2, 9.7)
 
     def testx1(self):
+        """ x == 0"""
         r = Square(5, 0)
         self.assertEqual(r.x, 0)
 
@@ -95,6 +103,7 @@ class TestSquare(unittest.TestCase):
 #   ---------- tests for y -------------------------------
 
     def testy(self):
+        """test y"""
         with self.assertRaises(TypeError):
             r = Square(2, 5, "hola")
 
@@ -114,12 +123,14 @@ class TestSquare(unittest.TestCase):
             r = Square(8, 3, 9.7)
 
     def testy1(self):
+        """ y == 0"""
         r = Square(5, 0, 0)
         self.assertEqual(r.y, 0)
 
 #    ---------------------- id ----------------------------
 
     def testid(self):
+        """ test id"""
         r = Square(3, 4, 5, 6)
         self.assertEqual(r.id, 6)
         r = Square(3, 4, 5, "6")
@@ -134,10 +145,12 @@ class TestSquare(unittest.TestCase):
 #    -----------  Area    ---------------------------------
 
     def testarea1(self):
+        """test area"""
         r = Square(5)
         self.assertEqual(r.area(), 25)
 
     def testarea2(self):
+        """error area"""
         r = Square(6)
         with self.assertRaises(TypeError):
             r.area(1)
@@ -145,6 +158,7 @@ class TestSquare(unittest.TestCase):
 #    ------------- Display ---------------------------------
 
     def testdisplay(self):
+        """ test display"""
         with patch('sys.stdout', new=StringIO()) as salida:
             r = Square(2)
             r.display()
@@ -164,6 +178,7 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(salida.getvalue(), st)
 
     def testdisplay1(self):
+        """error display"""
         r = Square(1, 3)
         with self.assertRaises(TypeError):
             r.display(1)
@@ -171,12 +186,14 @@ class TestSquare(unittest.TestCase):
 #    -------------- __str__ ---------------------------------
 
     def tesstr(self):
+        """ test str"""
         r = Square(2, 3, 4, 5)
         self.assertEqual(str(r), "[Square] (5) 3/4 - 2")
 
 #    ----------------- Update -------------------------------
 
     def testupdate(self):
+        """ test update"""
         r = Square(1, 1, 1, 1)
         self.assertEqual(str(r), "[Square] (1) 1/1 - 1")
         r.update(2, 2)
@@ -213,6 +230,7 @@ class TestSquare(unittest.TestCase):
 #    ------------------------- Dictionary -----------------------
 
     def testdictionary(self):
+        """test dictionary"""
         r = Square(6, 7, 8, 3)
         r1 = r.to_dictionary()
         pr = {'id': 3, 'size': 6, 'x': 7, 'y': 8}
@@ -220,16 +238,19 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(r1[elem], pr[elem])
 
     def testdictionary1(self):
+        """error dictionary"""
         r = Square(4, 5)
         with self.assertRaises(TypeError):
             r.to_dictionary(9)
 
 #    ------------------------- no Arguments -------------------------------
     def testfargument1(self):
+        """No args"""
         with self.assertRaises(TypeError):
             r = Square()
 
     def testfargument2(self):
+        """ more than 4 args"""
         with self.assertRaises(TypeError):
             r = Square(1, 2, 3, 4, 5)
 
@@ -237,6 +258,7 @@ class TestSquare(unittest.TestCase):
 #    -------------------instance and inheritance ----------------------------
 
     def testinstandclass(self):
+        """ verifications, instances, subclasses"""
         r = Square(4)
         self.assertTrue(isinstance(r, Square))
         self.assertTrue(isinstance(r, Rectangle))

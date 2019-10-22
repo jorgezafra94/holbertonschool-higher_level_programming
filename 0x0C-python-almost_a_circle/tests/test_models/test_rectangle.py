@@ -10,8 +10,11 @@ from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
-
+    """
+    all test for Rectangle class
+    """
     def testcreateelems(self):
+        """ test for create elements """
         r = Rectangle(1, 1)
         r1 = Rectangle(2, 5, 6)
         r2 = Rectangle(6, 8, 10, 9)
@@ -28,6 +31,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r3.id, 90)
 
     def testgetandset(self):
+        """ test for get and set"""
         r = Rectangle(5, 2)
         self.assertEqual(r.width, 5)
         r.width = 9
@@ -47,6 +51,7 @@ class TestRectangle(unittest.TestCase):
 #  ---------- tests for width -----------------------
 
     def testwidth(self):
+        """ test of width"""
         with self.assertRaises(TypeError):
             r = Rectangle("hola", 2)
 
@@ -71,6 +76,7 @@ class TestRectangle(unittest.TestCase):
 #   ---------- tests for height -----------------------
 
     def testheight(self):
+        """ test of height"""
         with self.assertRaises(TypeError):
             r = Rectangle(2, "hola")
 
@@ -94,6 +100,7 @@ class TestRectangle(unittest.TestCase):
 
 #   ---------- tests for x -----------------------------
     def testx(self):
+        """ test of x"""
         with self.assertRaises(TypeError):
             r = Rectangle(2, 2, "hola")
 
@@ -113,6 +120,7 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(3, 2, 9.7)
 
     def testx1(self):
+        """ x == 0"""
         r = Rectangle(6, 5, 0)
         self.assertEqual(r.x, 0)
 
@@ -120,6 +128,7 @@ class TestRectangle(unittest.TestCase):
 #   ---------- tests for y -------------------------------
 
     def testy(self):
+        """ test of y"""
         with self.assertRaises(TypeError):
             r = Rectangle(2, 2, 5, "hola")
 
@@ -139,12 +148,14 @@ class TestRectangle(unittest.TestCase):
             r = Rectangle(3, 8, 3, 9.7)
 
     def testy1(self):
+        """ test y == 0"""
         r = Rectangle(6, 5, 0, 0)
         self.assertEqual(r.y, 0)
 
 #    ---------------------- id ----------------------------
 
     def testid(self):
+        """ id values """
         r = Rectangle(2, 3, 4, 5, 6)
         self.assertEqual(r.id, 6)
         r = Rectangle(2, 3, 4, 5, "6")
@@ -159,10 +170,12 @@ class TestRectangle(unittest.TestCase):
 #    -----------  Area    ---------------------------------
 
     def testarea1(self):
+        """ test area"""
         r = Rectangle(5, 6)
         self.assertEqual(r.area(), 30)
 
     def testarea2(self):
+        """ error area"""
         r = Rectangle(5, 6)
         with self.assertRaises(TypeError):
             r.area(1)
@@ -170,6 +183,7 @@ class TestRectangle(unittest.TestCase):
 #    ------------- Display ---------------------------------
 
     def testdisplay(self):
+        """ test with display"""
         with patch('sys.stdout', new=StringIO()) as salida:
             r = Rectangle(2, 3)
             r.display()
@@ -189,6 +203,7 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(salida.getvalue(), st)
 
     def testdisplay1(self):
+        """ error with display"""
         r = Rectangle(1, 3)
         with self.assertRaises(TypeError):
             r.display(1)
@@ -196,12 +211,14 @@ class TestRectangle(unittest.TestCase):
 #    -------------- __str__ ---------------------------------
 
     def tesstr(self):
+        """ test str"""
         r = Rectangle(1, 2, 3, 4, 5)
         self.assertEqual(str(r), "[Rectangle] (5) 3/4 - 1/2")
 
 #    ----------------- Update -------------------------------
 
     def testupdate(self):
+        """ test update"""
         r = Rectangle(1, 1, 1, 1, 1)
         self.assertEqual(str(r), "[Rectangle] (1) 1/1 - 1/1")
         r.update(2, 2)
@@ -238,6 +255,7 @@ class TestRectangle(unittest.TestCase):
 #    ------------------------- Dictionary -----------------------
 
     def testdictionary(self):
+        """ test dictionary"""
         r = Rectangle(5, 6, 7, 8, 3)
         r1 = r.to_dictionary()
         pr = {'id': 3, 'width': 5, 'height': 6, 'x': 7, 'y': 8}
@@ -245,20 +263,24 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(r1[elem], pr[elem])
 
     def testdictionary1(self):
+        """ error dictionary"""
         r = Rectangle(4, 5)
         with self.assertRaises(TypeError):
             r.to_dictionary(9)
 
 #    ------------------------- no Arguments -------------------------------
     def testfargument1(self):
+        """No args"""
         with self.assertRaises(TypeError):
             r = Rectangle()
 
     def testfargument2(self):
+        """ just 1 arg"""
         with self.assertRaises(TypeError):
             r = Rectangle(1)
 
     def testfargument3(self):
+        """ more than 5 args"""
         with self.assertRaises(TypeError):
             r = Rectangle(1, 2, 3, 4, 5, 6)
 
@@ -266,6 +288,7 @@ class TestRectangle(unittest.TestCase):
 #    -------------------instance and inheritance ----------------------------
 
     def testinstandclass(self):
+        """ instances, subclases, verifications"""
         r = Rectangle(4, 5)
         self.assertTrue(isinstance(r, Rectangle))
         self.assertTrue(isinstance(r, Base))

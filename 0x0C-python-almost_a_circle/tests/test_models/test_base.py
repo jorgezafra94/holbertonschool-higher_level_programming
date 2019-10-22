@@ -21,6 +21,7 @@ class Testbaseclass(unittest.TestCase):
         self.assertEqual(b2.id, 2)
 
     def testsetid(self):
+        """ test for set id"""
         b = Base("h")
         b1 = Base({1: 2})
         b2 = Base((1, 4))
@@ -35,6 +36,7 @@ class Testbaseclass(unittest.TestCase):
 #     --------- private attribute of class --------
 
     def testprivate(self):
+        """ test for private attribute"""
         b = Base()
         with self.assertRaises(AttributeError):
             b.__nb_objects
@@ -42,6 +44,15 @@ class Testbaseclass(unittest.TestCase):
 #    -------------- static method to_json_string -----------
 
     def testtojson(self):
+        """ test to json"""
         dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
         stdic = json.dumps([dic])
         self.assertEqual(Square.to_json_string([dic]), stdic)
+
+# ------------------ pep8 ----------------------------------
+def test_pep8_conformance(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['file1.py', 'file2.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
