@@ -81,7 +81,7 @@ class Testbaseclass(unittest.TestCase):
         self.assertEqual(r, "[[1, 2, 3]]")
 
 
-    def testtojson(self):
+    def testtojson1(self):
         """error json"""
         with self.assertRaises(TypeError):
             Base.to_json_string()
