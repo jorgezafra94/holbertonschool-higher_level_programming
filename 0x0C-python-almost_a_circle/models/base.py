@@ -4,6 +4,7 @@ main class of all the proyect
 
 """
 
+import turtle
 import csv
 import os
 import json
@@ -151,3 +152,27 @@ class Base:
             return(inst)
         else:
             return(result)
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        turtle = turtle.Turtle()
+        for elem in list_rectangles:
+            turtle.goto(elem.x, elem.y)
+            for i in range(2):
+                turtle.up()
+                turtle.forward(elem.width)
+                turtle.left(90)
+                turtle.forward(elem.height)
+                turtle.left(90)
+            turtle.hidde()
+
+        for elem in list_squares:
+            turtle.goto(elem.x, elem.y)
+            for i in range(2):
+                turtle.up()
+                turtle.forward(elem.width)
+                turtle.left(90)
+                turtle.forward(elem.width)
+                turtle.left(90)
+            turtle.hidde()
+        turtle.done()
