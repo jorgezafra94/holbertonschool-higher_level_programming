@@ -386,6 +386,53 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             r = Rectangle.create({1, 2, 3})
 
+    def testcreate2(self):
+        r = Rectangle(2, 2, 0, 0, 89)
+        r1 = Rectangle.create(**{'id': 89 })
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.height == r.height)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate3(self):
+        r = Rectangle(1, 2, 0, 0, 89)
+        r1 = Rectangle.create(**{'id': 89, 'width': 1})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.height == r.height)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate2(self):
+        r = Rectangle(1, 2, 0, 0, 89)
+        r1 = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.height == r.height)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate3(self):
+        r = Rectangle(1, 2, 3, 0, 89)
+        r1 = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2, 'x':3})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.height == r.height)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate4(self):
+        r = Rectangle(1, 2, 3, 4, 89)
+        dict = {'id': 89, 'width': 1, 'height': 2, 'x':3, 'y': 4}
+        r1 = Rectangle.create(**dict)
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.height == r.height)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+
 #    -------------------- from file --------------------------
 
     def test_load_from_files(self):
