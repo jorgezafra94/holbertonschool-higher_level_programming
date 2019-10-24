@@ -4,7 +4,7 @@ main class of all the proyect
 
 """
 
-import turtle
+# import turtle
 import csv
 import os
 import json
@@ -152,7 +152,7 @@ class Base:
             return(inst)
         else:
             return(result)
-
+"""
     @staticmethod
     def draw(list_rectangles, list_squares):
         turtle = turtle.Turtle()
@@ -176,3 +176,4 @@ class Base:
                 turtle.left(90)
             turtle.hidde()
         turtle.done()
+"""
