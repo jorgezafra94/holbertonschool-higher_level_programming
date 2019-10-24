@@ -337,6 +337,16 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(AttributeError):
             Rectangle.save_to_string()
 
+    def testsavetofile2(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+        res = '\'[{"x": 2, "y": 8, "id": 2, "height": 7, "width": 10},'
+        res = res + ' {"x": 0, "y": 0, "id": 3, "height": 4, "width": 2}]\''
+        with open("Rectangle.json", "r") as file:
+            res2 = file.read()
+            self.assertEqual(len(res2), len(res))
+
 #    ----------------- from json --------------------------
 
     def testfromjson(self):
@@ -352,3 +362,36 @@ class TestRectangle(unittest.TestCase):
         """ error save to file"""
         with self.assertRaises(TypeError):
             Rectangle.from_json_string()
+
+#    ------------------- create ----------------------------
+
+    def testcreate(self):
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual((r1 == r2), False)
+        self.assertEqual((r1 is r2), False)
+
+    def testcreate1(self):
+        with self.assertRaises(TypeError):
+            r = Rectangle.create(None)
+        with self.assertRaises(TypeError):
+            r = Rectangle.create("holby")
+        with self.assertRaises(TypeError):
+            r = Rectangle.create([1, 2, 3])
+        with self.assertRaises(TypeError):
+            r = Rectangle.create(1)
+        with self.assertRaises(TypeError):
+            r = Rectangle.create(1.0)
+        with self.assertRaises(TypeError):
+            r = Rectangle.create({1, 2, 3})
+
+#    -------------------- from file --------------------------
+
+    def test_load_from_files(self):
+        rect_list = Rectangle.load_from_file()
+        self.assertEqual(rect_list, [])
+
+    def test_load_from_files(self):
+        with self.assertRaises(TypeError):
+            rect_list = Rectangle.load_from_file("Rectangle.json")
