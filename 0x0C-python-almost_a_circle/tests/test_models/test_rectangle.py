@@ -461,4 +461,4 @@ class TestRectangle(unittest.TestCase):
 
     def testloadfromfile3(self):
         with self.assertRaises(TypeError):
-            rect_list = Rectangle.load_from_file("Hola")    
+            rect_list = Rectangle.load_from_file("Hola")
