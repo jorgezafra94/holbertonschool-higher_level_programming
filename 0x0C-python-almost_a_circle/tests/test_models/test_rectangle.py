@@ -2,6 +2,7 @@
 """
 Unittest for Rectangle Class
 """
+import os
 import json
 from io import StringIO
 from unittest.mock import patch
@@ -325,9 +326,12 @@ class TestRectangle(unittest.TestCase):
 
     def testsavetofile(self):
         """ test save to file"""
-        Rectangle.save_to_file([])
+        nw = []
+        Rectangle.save_to_file(new)
         with open("Rectangle.json") as fd:
             self.assertEqual(fd.read(), "[]")
+
+    def testsavetofile(self):
         Rectangle.save_to_file(None)
         with open("Rectangle.json") as fd:
             self.assertEqual(fd.read(), "[]")
@@ -336,6 +340,14 @@ class TestRectangle(unittest.TestCase):
         """ error save to file"""
         with self.assertRaises(AttributeError):
             Rectangle.save_to_string()
+
+    def testsavetofile3(self):
+        r1 = Rectangle(1, 2)
+        Rectangle.save_to_file([r1])
+        res = '[{"x": 0, "y": 0, "id": 24, "height": 2, "width": 1}]'
+        with open("Rectangle.json", "r") as file:
+            res2 = file.read()
+            self.assertEqual(len(res2), len(res))
 
     def testsavetofile2(self):
         r1 = Rectangle(10, 7, 2, 8)
@@ -388,7 +400,7 @@ class TestRectangle(unittest.TestCase):
 
     def testcreate2(self):
         r = Rectangle(2, 2, 0, 0, 89)
-        r1 = Rectangle.create(**{'id': 89 })
+        r1 = Rectangle.create(**{'id': 89})
         self.assertTrue(r1.width == r.width)
         self.assertTrue(r1.height == r.height)
         self.assertTrue(r1.x == r.x)
@@ -415,7 +427,7 @@ class TestRectangle(unittest.TestCase):
 
     def testcreate3(self):
         r = Rectangle(1, 2, 3, 0, 89)
-        r1 = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2, 'x':3})
+        r1 = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2, 'x': 3})
         self.assertTrue(r1.width == r.width)
         self.assertTrue(r1.height == r.height)
         self.assertTrue(r1.x == r.x)
@@ -424,7 +436,7 @@ class TestRectangle(unittest.TestCase):
 
     def testcreate4(self):
         r = Rectangle(1, 2, 3, 4, 89)
-        dict = {'id': 89, 'width': 1, 'height': 2, 'x':3, 'y': 4}
+        dict = {'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4}
         r1 = Rectangle.create(**dict)
         self.assertTrue(r1.width == r.width)
         self.assertTrue(r1.height == r.height)
@@ -435,10 +447,18 @@ class TestRectangle(unittest.TestCase):
 
 #    -------------------- from file --------------------------
 
-    def test_load_from_files(self):
+    def testloadfromfiles(self):
+        if os.path.exists("Rectangle.json") is True:
+            Rectangle.save_to_file([])
         rect_list = Rectangle.load_from_file()
         self.assertEqual(rect_list, [])
 
-    def test_load_from_files(self):
+    def testloadfromfiles2(self):
+        if os.path.exists("Rectangle.json") is True:
+            os.remove("Rectangle.json")
+        rect_list = Rectangle.load_from_file()
+        self.assertEqual(rect_list, [])
+
+    def testloadfromfile3(self):
         with self.assertRaises(TypeError):
-            rect_list = Rectangle.load_from_file("Rectangle.json")
+            rect_list = Rectangle.load_from_file("Hola")    
