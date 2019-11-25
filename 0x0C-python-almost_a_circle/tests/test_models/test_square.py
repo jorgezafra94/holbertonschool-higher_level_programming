@@ -2,6 +2,8 @@
 """
 Unittest for Square Class
 """
+import json
+import os
 from io import StringIO
 from unittest.mock import patch
 import unittest
@@ -272,3 +274,149 @@ class TestSquare(unittest.TestCase):
         self.assertTrue(hasattr(r, 'height'))
         self.assertTrue(hasattr(r, 'x'))
         self.assertTrue(hasattr(r, 'y'))
+
+#    -------------- static method to_json_string -----------
+
+    def testtojson(self):
+        """ test to json"""
+        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
+        stdic = json.dumps([dic])
+        self.assertEqual(Square.to_json_string([dic]), stdic)
+        r = Square.to_json_string(None)
+        self.assertEqual(r, "[]")
+        r = Square.to_json_string([])
+        self.assertEqual(r, "[]")
+        dic = [1, 2, 3]
+        r = Square.to_json_string([dic])
+        self.assertEqual(r, "[[1, 2, 3]]")
+
+    def testtojson1(self):
+        """error json"""
+        with self.assertRaises(TypeError):
+            Square.to_json_string()
+
+#   --------------  save to file -------------------------
+
+    def testsavetofile(self):
+        """ test save to file"""
+        nw = []
+        Square.save_to_file(new)
+        with open("Square.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+
+    def testsavetofile(self):
+        Square.save_to_file(None)
+        with open("Square.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+
+    def testsavetofile1(self):
+        """ error save to file"""
+        with self.assertRaises(AttributeError):
+            Square.save_to_string()
+
+    def testsavetofile3(self):
+        r1 = Square(1)
+        Square.save_to_file([r1])
+        res = '[{"x": 0, "y": 0, "id": 24, "size": 1}]'
+        with open("Square.json", "r") as file:
+            res2 = file.read()
+            self.assertEqual(len(res2), len(res))
+
+    def testsavetofile2(self):
+        r1 = Square(10, 7, 2, 8)
+        r2 = Square(2, 0, 0, 4)
+        Square.save_to_file([r1, r2])
+        res = '[{"x": 7, "y": 2, "id": 8, "size": 10},'
+        res = res + ' {"x": 0, "y": 0, "id": 4, "size": 2}]'
+        with open("Square.json", "r") as file:
+            res2 = file.read()
+            self.assertEqual(len(res2), len(res))
+
+#    ----------------- from json --------------------------
+
+    def testfromjson(self):
+        """ test load from json"""
+        self.assertEqual(Square.from_json_string("[]"), [])
+        self.assertEqual(Square.from_json_string(None), [])
+        self.assertEqual(Square.from_json_string(""), [])
+        lista = [1, 2, 3]
+        r = Square.to_json_string(lista)
+        self.assertEqual(Square.from_json_string(r), lista)
+
+    def testfromjson1(self):
+        """ error save to file"""
+        with self.assertRaises(TypeError):
+            Square.from_json_string()
+
+#    ------------------- create ----------------------------
+
+    def testcreate(self):
+        r1 = Square(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Square.create(**r1_dictionary)
+        self.assertEqual((r1 == r2), False)
+        self.assertEqual((r1 is r2), False)
+
+    def testcreate1(self):
+        with self.assertRaises(TypeError):
+            r = Square.create(None)
+        with self.assertRaises(TypeError):
+            r = Square.create("holby")
+        with self.assertRaises(TypeError):
+            r = Square.create([1, 2, 3])
+        with self.assertRaises(TypeError):
+            r = Square.create(1)
+        with self.assertRaises(TypeError):
+            r = Square.create(1.0)
+        with self.assertRaises(TypeError):
+            r = Square.create({1, 2, 3})
+
+    def testcreate2(self):
+        r = Square(5, 0, 0, 89)
+        r1 = Square.create(**{'id': 89})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate3(self):
+        r = Square(1, 0, 0, 89)
+        r1 = Square.create(**{'id': 89, 'size': 1})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate2(self):
+        r = Square(1, 2, 0, 89)
+        r1 = Square.create(**{'id': 89, 'size': 1, 'x': 2})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+    def testcreate3(self):
+        r = Square(1, 2, 3, 89)
+        r1 = Square.create(**{'id': 89, 'size': 1, 'x': 2, 'y': 3})
+        self.assertTrue(r1.width == r.width)
+        self.assertTrue(r1.x == r.x)
+        self.assertTrue(r1.y == r.y)
+        self.assertTrue(r1.id == r.id)
+
+#    -------------------- from file --------------------------
+
+    def testloadfromfiles(self):
+        if os.path.exists("Square.json") is True:
+            Square.save_to_file([])
+        new = Square.load_from_file()
+        self.assertEqual(new, [])
+
+    def testloadfromfiles2(self):
+        if os.path.exists("Square.json") is True:
+            os.remove("Square.json")
+        new = Square.load_from_file()
+        self.assertEqual(new, [])
+
+    def testloadfromfile3(self):
+        with self.assertRaises(TypeError):
+            new = Square.load_from_file("Hola")
