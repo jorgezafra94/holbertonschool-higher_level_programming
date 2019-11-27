@@ -4,10 +4,10 @@
 -- like in this case titulo
 SELECT tv_shows.title from tv_shows
 LEFT JOIN
-(SELECT tv_shows.title as titulo from tv_genres
+(SELECT tv_shows.title from tv_genres
 JOIN tv_show_genres ON tv_show_genres.genre_id = tv_genres.id
 JOIN tv_shows ON tv_shows.id = tv_show_genres.show_id
 WHERE tv_genres.name = "Comedy"
-GROUP BY tv_shows.title) sub_q ON tv_shows.title = sub_q.titulo
-WHERE sub_q.titulo IS NULL
+GROUP BY tv_shows.title) sub_q ON tv_shows.title = sub_q.title
+WHERE sub_q.title IS NULL
 ORDER BY tv_shows.title ASC;
