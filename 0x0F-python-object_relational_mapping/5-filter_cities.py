@@ -12,13 +12,13 @@ if __name__ == "__main__":
     query = db.cursor()
     state = sys.argv[4]
     query.execute("SELECT cities.id, cities.name, states.name FROM cities\
-                 LEFT JOIN states ON states.id = cities.state_id;\
-                 ORDER BY cities.id ASC;")
+                 LEFT JOIN states ON states.id = cities.state_id\
+                 WHERE states.name = %s;\
+                 ORDER BY cities.id ASC;", (sys.argv[4],))
     output = query.fetchall()
     aux = ""
     result = ""
     for i in output:
-        if (i[2] == state):
             result = result + aux + i[1]
             aux = ", "
     print(result)
