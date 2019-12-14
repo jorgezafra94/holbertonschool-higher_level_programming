@@ -19,3 +19,4 @@ if __name__ == "__main__":
     output = ses.query(State).order_by(State.id)
     for elem in output:
         print("{}: {}".format(elem.id, elem.name))
+    ses.close()
