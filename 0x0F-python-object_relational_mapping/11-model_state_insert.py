@@ -21,5 +21,6 @@ if __name__ == "__main__":
     Louisiana = State(name='Louisiana', id=6)
     ses.add(Louisiana)
     print(ses.query(State).count())
+    # refresh table
     ses.commit()
     ses.close()
