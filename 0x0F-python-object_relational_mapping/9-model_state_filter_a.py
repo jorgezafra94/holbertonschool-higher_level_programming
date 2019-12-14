@@ -21,3 +21,4 @@ if __name__ == "__main__":
     for elem in output:
         if ('a' in elem.name):
             print("{}: {}".format(elem.id, elem.name))
+    ses.close()
