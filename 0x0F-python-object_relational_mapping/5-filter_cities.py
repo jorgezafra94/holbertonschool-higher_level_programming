@@ -23,3 +23,5 @@ if __name__ == "__main__":
             result = result + aux + i[1]
             aux = ", "
     print(result)
+    query.close()
+    db.close()
