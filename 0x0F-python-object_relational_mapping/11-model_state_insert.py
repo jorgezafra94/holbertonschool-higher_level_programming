@@ -18,9 +18,11 @@ if __name__ == "__main__":
     # lets create a Session object
     ses = Session()
     # adding a new element in the table
-    Louisiana = State(name='Louisiana', id=6)
+    Louisiana = State(name='Louisiana')
     ses.add(Louisiana)
-    print(Louisiana.id)
     # refresh table
     ses.commit()
+    output = ses.query(State).filter(State.name == 'Louisiana')
+    for elem in output:
+        print(elem.id)
     ses.close()
