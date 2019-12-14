@@ -16,6 +16,7 @@ if __name__ == "__main__":
     ses = Session()
     # output is going to be the result of the
     # query SELCT * FROM states; ORDER BY id
+    # so output is going to be a list of objects
     output = ses.query(State).order_by(State.id)
     for elem in output:
         if ('a' in elem.name):
