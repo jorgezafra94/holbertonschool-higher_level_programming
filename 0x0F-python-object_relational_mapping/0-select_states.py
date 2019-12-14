@@ -14,3 +14,5 @@ if __name__ == "__main__":
     output = query.fetchall()
     for i in output:
         print(i)
+    query.close()
+    db.close()
