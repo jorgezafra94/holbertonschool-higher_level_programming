@@ -20,7 +20,7 @@ if __name__ == "__main__":
     # adding a new element in the table
     Louisiana = State(name='Louisiana', id=6)
     ses.add(Louisiana)
-    print(ses.query(State).count())
+    print(Louisiana.id)
     # refresh table
     ses.commit()
     ses.close()
