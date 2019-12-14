@@ -14,7 +14,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     # lets create a Session object
     ses = Session()
-    # get a list with all the objects order by id type State
+    # output is going to be the result of the
+    # query SELCT * FROM states; ORDER BY id
     output = ses.query(State).order_by(State.id)
     for elem in output:
         print("{}: {}".format(elem.id, elem.name))
