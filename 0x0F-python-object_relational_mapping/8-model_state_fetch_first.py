@@ -22,3 +22,4 @@ if __name__ == "__main__":
         print("Nothing")
     else:
         print("{}: {}".format(output.id, output.name))
+    ses.close()
