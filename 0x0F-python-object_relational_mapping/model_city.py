@@ -4,8 +4,9 @@ class to use in call of ORM
 this class is going to have a Foreignkey from class State
 """
 from sqlalchemy import ForeignKey
-from model_state import Base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
+from model_state import Base, State
 
 
 class City(Base):
@@ -18,4 +19,4 @@ class City(Base):
     id = Column(Integer, primary_key=True, autoincrement=True,
                 nullable=False, unique=True)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, nullable=False, ForeignKey('states.id'))
+    state_id = Column(Integer, ForeignKey('states.id'), nullable=False)
