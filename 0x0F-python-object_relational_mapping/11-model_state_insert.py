@@ -23,6 +23,8 @@ if __name__ == "__main__":
     # refresh table
     ses.commit()
     output = ses.query(State).filter(State.name == 'Louisiana')
+    # if you want to reset the autoincrement use:
+    # ALTER TABLE states AUTO_INCREMENT = 1;
     for elem in output:
         print(elem.id)
     ses.close()
