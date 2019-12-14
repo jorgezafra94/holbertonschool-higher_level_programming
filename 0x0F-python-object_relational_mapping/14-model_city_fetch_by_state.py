@@ -19,8 +19,8 @@ if __name__ == "__main__":
     # lets create a Session object
     ses = Session()
     # JOIN IN ORM
-    output = ses.query(State.name, City.id,
-                       City.name).join(City, State.id == City.state_id)
+    output = ses.query(State.name, City.id, City.name)\
+                .join(City, State.id == City.state_id).order_by(City.id)
     for row in output:
         print("{}: ({}) {}".format(row[0], row[1], row[2]))
     ses.close()
