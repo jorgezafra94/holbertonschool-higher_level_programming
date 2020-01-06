@@ -8,13 +8,7 @@ def find_peak(list_of_integers):
     """
     if not list_of_integers:
         return (None)
-    lista = list_of_integers
-    for i in range(len(lista)):
-        if i == 0:
-            aux = lista[i]
-        if i != 0 and i != len(lista) - 1:
-            if lista[i] >= aux:
-                aux = lista[i]
-            if lista[i] >= lista[i - 1] and lista[i] >= lista[i + 1]:
-                return(lista[i])
-    return (aux)
+    l = list_of_integers
+    for i in range(len(l)):
+        if (i == 0 or l[i] >= l[i + 1]) and (i == len(l) - 1 or l[i] >= l[i - 1]):
+            return (l[i])
