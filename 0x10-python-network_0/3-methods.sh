@@ -1,3 +1,3 @@
 #!/bin/bash
 # show all methos supported by server
-curl -LsX OPTIONS "$1"
+curl -sIX OPTIONS "$1" | grep Allow: | cut -d' ' -f2-
