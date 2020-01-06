@@ -1,3 +1,3 @@
 #!/bin/bash
-# Write a Bash script that takes in a URL, sends a request to that URL, and displays the size of the body of the response
-curl -s "$1"
+# get what is inside 0.0.0.0:5000/route_1 ; echo ""
+curl -Ls "$1"
