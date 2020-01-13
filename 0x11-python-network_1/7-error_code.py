@@ -7,10 +7,10 @@ if __name__ == "__main__":
     import sys
 
     r = requests.get(sys.argv[1])
-    if (r.status_code < 400 ):
+    if (r.status_code < 400):
         # raise_for_status method return None if status 200
         # otherway raise an error
-        #r.raise_for_status()
+        # r.raise_for_status()
         print(r.text)
     else:
         print("Error Code: {}".format(r.status_code))
