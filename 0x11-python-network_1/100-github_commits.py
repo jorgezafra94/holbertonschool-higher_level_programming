@@ -10,8 +10,9 @@ if __name__ == "__main__":
     API = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
     r = requests.get(API)
     # the commits are in order from new to old
-    for i in range(10):
-        commit = r.json()[i]
-        sha = commit.get('sha')
-        author = commit.get('commit').get('author').get('name')
-        print("{}: {}".format(sha, author))
+    for i in range(len(r.json())):
+        if (i < 10):
+            commit = r.json()[i]
+            sha = commit.get('sha')
+            author = commit.get('commit').get('author').get('name')
+            print("{}: {}".format(sha, author))
