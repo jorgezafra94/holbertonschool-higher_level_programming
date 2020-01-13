@@ -5,8 +5,8 @@ if __name__ == "__main__":
     import sys
     import requests
 
-    owner = sys.argv[1]
-    repo = sys.argv[2]
+    owner = sys.argv[2]
+    repo = sys.argv[1]
     API = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
     r = requests.get(API)
     # the commits are in order from new to old
