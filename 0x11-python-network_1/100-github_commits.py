@@ -4,6 +4,7 @@
 if __name__ == "__main__":
     import sys
     import requests
+
     owner = sys.argv[1]
     repo = sys.argv[2]
     API = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
@@ -13,4 +14,4 @@ if __name__ == "__main__":
         commit = r.json()[i]
         sha = commit.get('sha')
         author = commit.get('commit').get('author').get('name')
-        print("{} {}".format(sha, author))
+        print("{}: {}".format(sha, author))
