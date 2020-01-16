@@ -11,7 +11,7 @@ if __name__ == "__main__":
     cos_key = sys.argv[1]
     sec_key = sys.argv[2]
     # string to search
-    string = sys. argv[3]
+    string = sys.argv[3]
     # get the bearer key using base64 decode with cos_key and sec_key
     # first decode the cos_key and sec_key
     key_secret = '{}:{}'.format(cos_key, sec_key).encode('ascii')
@@ -45,4 +45,5 @@ if __name__ == "__main__":
     # we get the answers
     tweet_data = search_resp.json()
     for x in tweet_data['statuses']:
-        print(x['text'] + '\n')
+        print("[{}] {} by {}".format(x.get('id'), x.get('text'),
+                                     x.get('user'), x.get('name')))
