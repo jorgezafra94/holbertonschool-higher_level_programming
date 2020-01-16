@@ -21,9 +21,9 @@ if __name__ == "__main__":
     # all this steps are in
     # https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0/application-only
     complete_API = API + "oauth2/token"
-    headers = {'Authorization': 'Basic {}'.format(b64_key),
-               'Content-Type':
-               'application/x-www-form-urlencoded;charset=UTF-8'}
+    headers = {
+        'Authorization': 'Basic {}'.format(b64_key),
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}
     data = {'grant_type': 'client_credentials'}
     r = requests.post(complete_API, headers=headers, data=data)
     # we get a 200 if all is fine print(r.status_code)
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     }
 
     se_params = {
-        'q': '{}'.format(string),
+        'q': string,
         'result_type': 'recent',
         'count': 5
     }
@@ -46,4 +46,4 @@ if __name__ == "__main__":
     tweet_data = search_resp.json()
     for x in tweet_data['statuses']:
         print("[{}] {} by {}".format(x.get('id'), x.get('text'),
-                                     x.get('user'), x.get('name')))
+                                     x.get('user').get('name')))
