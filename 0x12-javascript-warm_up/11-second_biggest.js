@@ -10,7 +10,7 @@ let x = 0;
 const list = process.argv.slice(2);
 x = process.argv.length;
 if (x <= 2 || x === 3) {
-  console.log(0);
+  console.log('0');
 } else {
   list.sort();
   console.log(list[list.length - 2]);
