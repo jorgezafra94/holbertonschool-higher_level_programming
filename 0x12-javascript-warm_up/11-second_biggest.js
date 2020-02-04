@@ -17,8 +17,8 @@ if (x <= 2 || x === 3) {
   let position = 0;
   for (; count < list.length; count++) {
     if (value <= parseInt(list[count])) {
-	value = parseInt(list[count]);
-	position = count;
+      value = parseInt(list[count]);
+      position = count;
     }
   }
   count = 0;
@@ -30,7 +30,7 @@ if (x <= 2 || x === 3) {
   }
   for (; count < list.length; count++) {
     if (count === position) {
-	    continue;
+      continue;
     }
     if (second <= parseInt(list[count])) {
       second = parseInt(list[count]);
