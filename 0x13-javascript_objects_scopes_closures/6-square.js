@@ -1,9 +1,9 @@
 #!/usr/bin/node
 /* inheritance in JS */
-const Rectangle = require('./4-rectangle');
-module.exports = class Square extends Rectangle {
+const Square1 = require('./5-square');
+module.exports = class Square extends Square1 {
   constructor (size) {
-    super(size, size);
+    super(size);
   }
 
   charPrint (c = 'X') {
