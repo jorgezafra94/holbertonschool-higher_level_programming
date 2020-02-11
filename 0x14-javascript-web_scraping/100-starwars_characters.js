@@ -1,21 +1,21 @@
 #!/usr/bin/node
 /* module request */
 const request = require('request');
+const req2 = require('request');
 let page = 'https://swapi.co/api/films/';
-page += process.argv[2];
+page = page + process.argv[2];
 request(page, function (error, status, body) {
   if (error) {
     console.error(error);
   } else {
-    const lista = JSON.parse(body);
-    for (const person of Object.values(lista.characters)) {
-      const request2 = require('request');
-      request2(person, function (err, st, bd) {
-        if (err) {
-          console.error(err);
+    let lista = JSON.parse(body);
+    lista = lista.characters;
+    for (const elem of Object.values(lista)) {
+      req2(elem, function (e, s, b) {
+        if (e) {
+          console.error(e);
         } else {
-          const lista2 = JSON.parse(bd);
-          console.log(lista2.name);
+          console.log(JSON.parse(b).name);
         }
       });
     }
