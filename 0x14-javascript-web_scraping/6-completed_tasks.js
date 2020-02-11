@@ -18,8 +18,8 @@ request(page, function (error, status, body) {
     for (const id of Object.values(keys)) {
       counter = 0;
       for (const obj of Object.values(lista)) {
-        if (id === obj.userId && obj.completed) {
-          counter += 1;
+        if (id === obj.userId && obj.completed === true) {
+          counter++;
         }
       }
       number.push(counter);
