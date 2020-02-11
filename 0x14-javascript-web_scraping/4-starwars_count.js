@@ -3,7 +3,6 @@
 const request = require('request');
 const character = 'https://swapi.co/api/people/18/';
 let counter = 0;
-
 const page = process.argv[2];
 request(page, function (error, status, body) {
   if (error) {
