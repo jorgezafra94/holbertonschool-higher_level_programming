@@ -7,7 +7,7 @@ const page = process.argv[2];
 request(page, function (error, status, body) {
   if (error) {
     console.error(error);
-  } else {
+  } else if (status.statusCode === 200) {
     const lista = JSON.parse(body);
     for (let i = 0; i < lista.results.length; i++) {
       for (let j = 0; j < lista.results[i].characters.length; j++) {
