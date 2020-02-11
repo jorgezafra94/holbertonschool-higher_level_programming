@@ -7,7 +7,7 @@ const number = [];
 const page = process.argv[2];
 request(page, function (error, status, body) {
   if (error) {
-    console.error(error);
+    throw error;
   }
   const lista = JSON.parse(body);
   for (const user of Object.values(lista)) {
